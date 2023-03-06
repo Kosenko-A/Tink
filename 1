@@ -1,0 +1,9 @@
+list_in = list(map(int, input().split()))
+
+listSort = sorted(list_in)
+listSortRev = sorted(list_in)[::-1]
+
+if list_in == listSort or list_in == listSortRev:
+    print('YES')
+else:
+    print('NO')
