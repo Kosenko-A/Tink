@@ -1,3 +1,5 @@
+import math
+
 list_in = list(map(int, input().split()))
 n, m, k = list_in
-print(round((n * k) / m))
+print(math.ceil((n * k) / m))
