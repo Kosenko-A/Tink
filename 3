@@ -1,0 +1,27 @@
+n = int(input())
+str_in = input()
+
+position_a = position_b = position_c = position_d = -1
+res = -1
+r = 0
+for i in range(n):
+    r = i
+    if str_in[i] == 'a':
+        position_a = i
+    elif str_in[i] == 'b':
+        position_b = i
+    elif str_in[i] == 'c':
+        position_c = i
+    elif str_in[i] == 'd':
+        position_d = i
+
+    l = min(position_a, position_b, position_c, position_d)
+    if l == -1:
+        continue
+
+    length = r - l + 1
+
+    if res == -1 or res > length:
+        res = length
+
+print(res)
