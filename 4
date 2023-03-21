@@ -1,0 +1,36 @@
+num = int(input())
+list_in = list(map(int, input().split()))
+
+counts = {list_in[0]: 1}
+max_prefix_len = 1
+
+
+def criterion_2(collection):
+    collection = sorted(collection)
+    if (collection[0] != collection[1]) or (collection[-1] != collection[-2]):
+        return True
+    return False
+
+
+def criterion(counts):
+    unique_dict_vals = set(counts.values())
+    unique_dict_vals_number = len(unique_dict_vals)
+
+    if unique_dict_vals_number > 2:
+        return False
+    if unique_dict_vals_number == 1:
+        return True
+    if unique_dict_vals_number == 2:
+        return criterion_2(counts.values())
+
+
+for index, element in enumerate(list_in[1:], 1):
+    if element in counts:
+        counts[element] += 1
+    else:
+        counts[element] = 1
+
+    if criterion(counts):
+        max_prefix_len = index + 1
+
+print(max_prefix_len)
