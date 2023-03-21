@@ -1,0 +1,36 @@
+def check_median(mid, s, students):
+    extra_points = 0
+    min_points = 0
+    for l, r in students:
+        if r < mid:
+            min_points += l
+        else:
+            extra_points += max(0, mid - l)
+            min_points += min(l, mid)
+
+    return min_points + extra_points <= s
+
+
+def maximize_median(students, s):
+    left = min(l for l, _ in students)
+    right = max(r for _, r in students) + 1
+
+    while left < right:
+        middle = (left + right + 1) // 2
+        if check_median(middle, s, students):
+            left = middle
+        else:
+            right = middle - 1
+
+    return left
+
+
+first = list(map(int, input().split()))
+n, s = first
+points = []
+for i in range(n):
+    l = []
+    l = list(map(int, input().split()))
+    points.append(l)
+
+print(maximize_median(points, s))
